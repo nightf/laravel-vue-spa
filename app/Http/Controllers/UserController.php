@@ -33,7 +33,6 @@ class UserController extends Controller
 
     public function login(Request $request){
     	$credential = $request->only('email','password');
-    	var_dump(JWTAuth::attempt($credential));
     	if (!$token = JWTAuth::attempt($credential)){
     		return "Not Authenticated";
     	}

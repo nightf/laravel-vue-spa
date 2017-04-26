@@ -4260,9 +4260,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+var TOKEN = localStorage.getItem('token');
 /* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            token: localStorage.getItem('token'),
+            loading: false
+        };
+    },
+
+    methods: {
+        fetchIt: function fetchIt() {
+            console.log('fetched');
+            this.loading = true;
+        }
+    },
     mounted: function mounted() {
-        console.log('Component mounted.');
+        if (TOKEN) {
+            console.log('auth');
+            this.fetchIt();
+        } else {
+            console.log('not authenticated');
+        }
+        // console.log(TOKEN);
+        // console.log('Component mounted.');
+        // console.log(this.token);
     }
 });
 
@@ -27106,11 +27128,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		logIn: function logIn() {
 			axios.post('login', { email: this.email, password: this.password }).then(function (response) {
 				var token = response.data.token;
-				console.log(token);
 				if (token) {
 					localStorage.setItem('token', token);
 				};
-				console.log;
 			}).catch(function (error) {
 				console.log(error.response);
 			});

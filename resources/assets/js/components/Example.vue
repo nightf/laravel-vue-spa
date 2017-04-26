@@ -15,9 +15,31 @@
 </template>
 
 <script>
+    const TOKEN = localStorage.getItem('token');
     export default {
+        data(){
+            return{
+                token: localStorage.getItem('token'),
+                loading: false
+            }
+        },
+        methods:{
+            fetchIt(){
+                console.log('fetched');
+                this.loading = true;
+            },
+        },
         mounted() {
-            console.log('Component mounted.')
+            if (TOKEN){
+                console.log('auth');
+                this.fetchIt();
+            } else {
+                console.log('not authenticated');
+            }
+            // console.log(TOKEN);
+            // console.log('Component mounted.');
+            // console.log(this.token);
+            
         }
     }
 </script>

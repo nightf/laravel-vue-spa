@@ -69,11 +69,9 @@
 				axios.post('login',{email:this.email,password:this.password})
 				.then(response=>{
 					let token = response.data.token;
-					console.log(token);
 					if (token){
 						localStorage.setItem('token',token);
 					};
-					console.log
 				})
 				.catch(error=>{
 					console.log(error.response);
